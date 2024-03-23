@@ -1,4 +1,4 @@
-module order-app
+module check-in
 
 go 1.22.0
 

@@ -1,9 +1,9 @@
 package database
 
 import (
-	"fmt"
 	"check-in/config"
 	"check-in/models"
+	"fmt"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -21,7 +21,7 @@ func Start() (Database, error) {
 	}
 
 	// migrate
-	if error := db.Debug().AutoMigrate(&models.Order{}, &models.Item{}); error != nil {
+	if error := db.Debug().AutoMigrate(&models.Payment{}, &models.Order{}, &models.Room{}, &models.Hotel{}, &models.User{}); error != nil {
 		fmt.Println("Error migrating database")
 		return Database{}, error
 	}
