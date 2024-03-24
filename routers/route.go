@@ -2,7 +2,7 @@ package router
 
 import (
 	"check-in/config"
-	"check-in/controller"
+	controller "check-in/controllers"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
