@@ -1,13 +1,13 @@
 package models
 
 type Hotel struct {
-	HotelID       int    `json:"hotel_id" gorm:"primary_key"`
-	Name          string `json:"name" gorm:"type:varchar(100)"`
-	Location      string `json:"location" gorm:"type:varchar(255)"`
-	RoomCount     int    `json:"room_count" gorm:"type:int"`
-	RoomAvailable int    `json:"room_available" gorm:"type:int"`
-	Star          int    `json:"star" gorm:"type:int"`
-	IsSyariah     bool   `json:"is_syariah" gorm:"type:boolean"`
-	Photo         string `json:"photo" gorm:"type:varchar(255)"`
-	Facility      string `json:"facility" gorm:"type:varchar(255)"`
+	HotelID       uint   `gorm:"column:hotel_id;primaryKey;autoIncrement" json:"hotel_id"`
+	Name          string `gorm:"column:name;type:varchar(255)" json:"name"`
+	Location      string `gorm:"column:location;type:varchar(255)" json:"location"`
+	RoomCount     int    `gorm:"column:room_count;type:int" json:"room_count"`
+	RoomAvailable int    `gorm:"column:room_available;type:int" json:"room_available"`
+	Star          int    `gorm:"column:star;type:int" json:"star"`
+	IsSyariah     bool   `gorm:"column:is_syariah;type:boolean" json:"is_syariah"`
+	Photo         string `gorm:"column:photo;type:varchar(255)" json:"photo"`
+	Facility      string `gorm:"column:facility;type:text" json:"facility"`
 }

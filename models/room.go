@@ -1,13 +1,14 @@
 package models
 
 type Room struct {
-	RoomID        int     `json:"room_id" gorm:"primary_key"`
-	Type          string  `json:"room_type" gorm:"type:varchar(100)"`
-	Capacity      int     `json:"room_capacity" gorm:"type:int"`
-	Price         int     `json:"room_price" gorm:"type:int"`
-	Photo         string  `json:"photo" gorm:"type:varchar(255)"`
-	Hotel         []Hotel `json:"hotel" gorm:"foreignkey:HotelID"`
-	Facility      string  `json:"facility" gorm:"type:varchar(255)"`
-	RoomCount     int     `json:"room_count" gorm:"type:int"`
-	RoomAvailable int     `json:"room_available" gorm:"type:int"`
+	RoomID        uint   `gorm:"column:room_id;primaryKey;autoIncrement" json:"room_id"`
+	Type          string `gorm:"column:type;type:varchar(255)" json:"type"`
+	Capacity      int    `gorm:"column:capacity;type:int" json:"capacity"`
+	Price         int    `gorm:"column:price;type:int" json:"price"`
+	Photo         string `gorm:"column:photo;type:varchar(255)" json:"photo"`
+	Hotel         Hotel  `gorm:"foreignKey:HotelID"`
+	HotelID       uint   `json:"hotel_id"`
+	Facility      string `gorm:"column:facility;type:text" json:"facility"`
+	RoomCount     int    `gorm:"column:room_count;type:int" json:"room_count"`
+	RoomAvailable int    `gorm:"column:room_available;type:int" json:"room_available"`
 }
