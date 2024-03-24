@@ -11,6 +11,7 @@ func AdminRouts(c *gin.Engine) {
 	admin := c.Group("/admin")
 	{
 		//Admin rounts
+		//Admin rounts
 		admin.POST("/login", controls.AdminLogin)
 		admin.POST("/signup", controls.AdminSignup)
 		admin.GET("/logout", middlereware.AdminAuth, controls.AdminSignout)
@@ -21,6 +22,12 @@ func AdminRouts(c *gin.Engine) {
 		admin.PUT("/hotel/edit/:id", middlereware.AdminAuth, controls.EditHotel)
 		admin.GET("/hotel", middlereware.AdminAuth, controls.ViewHotel)
 		admin.POST("/hotel", middlereware.AdminAuth, controls.AddHotel)
+
+		// room management routes
+		admin.POST("/rooms", middlereware.AdminAuth, controls.AddRoom)
+		admin.GET("/rooms", middlereware.AdminAuth, controls.ViewRooms)
+		admin.PUT("/rooms/edit/:id", middlereware.AdminAuth, controls.EditRoom)
+		
 	}
 
 }
