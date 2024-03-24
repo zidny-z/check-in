@@ -17,6 +17,10 @@ func AdminRouts(c *gin.Engine) {
 		admin.GET("/profile", middlereware.AdminAuth, controls.AdminProfile)
 		admin.GET("/adminvalidate", middlereware.AdminAuth, controls.ValidateAdmin)
 
+		//specification hotel management routes
+		admin.PUT("/hotel/edit/:id", middlereware.AdminAuth, controls.EditHotel)
+		admin.GET("/hotel", middlereware.AdminAuth, controls.ViewHotel)
+		admin.POST("/hotel", middlereware.AdminAuth, controls.AddHotel)
 	}
 
 }
