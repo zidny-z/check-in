@@ -38,42 +38,6 @@ func GetUserProfile(c *gin.Context) {
 
 }
 
-//>>>>>>>>>>>>>>> Edit user profile <<<<<<<<<<<<<<<<<<
-func EditUserProfileByadmin(c *gin.Context) {
-	uid := c.Param("id")
-	id, err := strconv.Atoi(uid)
-	if err != nil {
-		c.JSON(400, gin.H{
-			"Error": "Error in string conversion",
-		})
-	}
-	var userEnterdata ProfileData
-	var userData models.User
-	if c.Bind(&userEnterdata) != nil {
-		c.JSON(400, gin.H{
-			"Error": "Unable to Bind JSON data",
-		})
-		return
-	}
-	userData.ID = uint(id)
-	db := config.DB
-	result := db.Model(&userData).Updates(models.User{
-		FirstName: userEnterdata.Firstname,
-		LastName:  userEnterdata.Lastname,
-
-		PhoneNumber: userEnterdata.PhoneNumber,
-	})
-	if result.Error != nil {
-		c.JSON(404, gin.H{
-			"Error": result.Error.Error(),
-		})
-		return
-	}
-	c.JSON(200, gin.H{
-		"Message": "Profile Updated Successfully",
-	})
-}
-
 //>>>>>>>>>>> Admin profile <<<<<<<<<<<<<<<<<<<<<<<
 func AdminProfile(c *gin.Context) {
 	adminid, err := strconv.Atoi(c.GetString("adminid"))

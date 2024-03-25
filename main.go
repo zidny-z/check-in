@@ -21,7 +21,6 @@ func init() {
 		panic(err)
 	}
 
-	R.LoadHTMLGlob("templates/*.html")
 }
 
 var R = gin.Default()

@@ -9,17 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// import (
-// 	"fmt"
-// 	"strconv"
-// 	"time"
-
-// 	"checkin/config"
-// 	"checkin/models"
-
-// 	"github.com/gin-gonic/gin"
-// )
-
 // //>>>>>>>>>> MakeORder <<<<<<<<<<<<<<<<
 func OrderRoom(c *gin.Context) {
 	userId, err := strconv.Atoi(c.GetString("userid"))
