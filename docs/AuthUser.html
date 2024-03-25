@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auth User</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        <li>
+            <a href="#request-signup">Signup</a>
+        </li>
+        
+        <li>
+            <a href="#request-validateotp">ValidateOTP</a>
+        </li>
+        
+        <li>
+            <a href="#request-login">Login</a>
+        </li>
+        
+        <li>
+            <a href="#request-viewprofile">ViewProfile</a>
+        </li>
+        
+        <li>
+            <a href="#request-editprofile">EditProfile</a>
+        </li>
+        
+        <li>
+            <a href="#request-changepassword">ChangePassword</a>
+        </li>
+        
+        <li>
+            <a href="#request-updatepassword">UpdatePassword</a>
+        </li>
+        
+        <li>
+            <a href="#request-forgotpassword">ForgotPassword</a>
+        </li>
+        
+        <li>
+            <a href="#request-updateforgotpassword">UpdateForgotPassword</a>
+        </li>
+        
+        <li>
+            <a href="#request-logout">Logout</a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Auth User</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+                
+                <div class="request">
+
+                    <h3 id="request-signup">
+                        Signup
+                        <a href="#request-signup"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-signup-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-signup-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-signup-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "phonenumber": 81556827623
+  }' "{{base_url}}/user/signup"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-signup-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/signup HTTP/1.1
+Host: 
+
+{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "phonenumber": 81556827623
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-validateotp">
+                        ValidateOTP
+                        <a href="#request-validateotp"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-validateotp-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-validateotp-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-validateotp-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+      "otp"   : "8208",
+      "email" : "zidni@gomail.com"
+  }' "{{base_url}}/user/signup/otpvalidate"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-validateotp-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/signup/otpvalidate HTTP/1.1
+Host: 
+
+{
+      "otp"   : "8208",
+      "email" : "zidni@gomail.com"
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-login">
+                        Login
+                        <a href="#request-login"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-login-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-login-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-login-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "email": "zidni@gomail.com",
+    "password": "12345"
+}' "{{base_url}}/user/login"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-login-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/login HTTP/1.1
+Host: 
+
+{
+    "email": "zidni@gomail.com",
+    "password": "12345"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-viewprofile">
+                        ViewProfile
+                        <a href="#request-viewprofile"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-viewprofile-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-viewprofile-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-viewprofile-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "{{base_url}}/user/viewprofile"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-viewprofile-example-http">
+                                <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/user/viewprofile HTTP/1.1
+Host: </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-editprofile">
+                        EditProfile
+                        <a href="#request-editprofile"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-editprofile-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-editprofile-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-editprofile-example-curl">
+                                <pre><code class="hljs curl">curl -X PUT -d '{
+      "firstname" : "Zidnu",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "confirmpassword" : "12345",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+
+  }' "{{base_url}}/user/editprofile"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-editprofile-example-http">
+                                <pre><code class="hljs http">PUT %7B%7Bbase_url%7D%7D/user/editprofile HTTP/1.1
+Host: 
+
+{
+      "firstname" : "Zidnu",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "confirmpassword" : "12345",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-changepassword">
+                        ChangePassword
+                        <a href="#request-changepassword"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-changepassword-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-changepassword-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-changepassword-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "confirmpassword" : "12345",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+
+  }' "{{base_url}}/user/userchangepassword"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-changepassword-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/userchangepassword HTTP/1.1
+Host: 
+
+{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "12345",
+      "confirmpassword" : "12345",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-updatepassword">
+                        UpdatePassword
+                        <a href="#request-updatepassword"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-updatepassword-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-updatepassword-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-updatepassword-example-curl">
+                                <pre><code class="hljs curl">curl -X PUT -d '{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "123456",
+      "confirmpassword" : "123456",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+  }' "{{base_url}}/user/userchangepassword/updatepassword"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-updatepassword-example-http">
+                                <pre><code class="hljs http">PUT %7B%7Bbase_url%7D%7D/user/userchangepassword/updatepassword HTTP/1.1
+Host: 
+
+{
+      "firstname" : "Tony",
+      "lastname": "Stark",
+      "email" : "zidni@gomail.com",
+      "password" : "123456",
+      "confirmpassword" : "123456",
+      "phonenumber": 81556827623,
+      "otp":    "3180"
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-forgotpassword">
+                        ForgotPassword
+                        <a href="#request-forgotpassword"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-forgotpassword-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-forgotpassword-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-forgotpassword-example-curl">
+                                <pre><code class="hljs curl">curl -X PUT -d '{
+    "email" : "zidni@gomail.com"
+}' "{{base_url}}/user/forgotpassword"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-forgotpassword-example-http">
+                                <pre><code class="hljs http">PUT %7B%7Bbase_url%7D%7D/user/forgotpassword HTTP/1.1
+Host: 
+
+{
+    "email" : "zidni@gomail.com"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-updateforgotpassword">
+                        UpdateForgotPassword
+                        <a href="#request-updateforgotpassword"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-updateforgotpassword-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-updateforgotpassword-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-updateforgotpassword-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+      "email" : "zidni@gomail.com",
+      "otp":    "3308",
+      "password" : "12345",
+      "confirmpassword" : "12345"
+  }' "{{base_url}}/user/forgotpassword/changepassword"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-updateforgotpassword-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/forgotpassword/changepassword HTTP/1.1
+Host: 
+
+{
+      "email" : "zidni@gomail.com",
+      "otp":    "3308",
+      "password" : "12345",
+      "confirmpassword" : "12345"
+  }</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-logout">
+                        Logout
+                        <a href="#request-logout"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-logout-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-logout-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-logout-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "{{base_url}}/user/logout"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-logout-example-http">
+                                <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/user/logout HTTP/1.1
+Host: </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>

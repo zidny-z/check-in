@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order n Payment User</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        <li>
+            <a href="#request-orderroom">OrderRoom</a>
+        </li>
+        
+        <li>
+            <a href="#request-makepayment">MakePayment</a>
+        </li>
+        
+        <li>
+            <a href="#request-myorders">MyOrders</a>
+        </li>
+        
+        <li>
+            <a href="#request-mypayments">MyPayments</a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Order n Payment User</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+                
+                <div class="request">
+
+                    <h3 id="request-orderroom">
+                        OrderRoom
+                        <a href="#request-orderroom"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-orderroom-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-orderroom-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-orderroom-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "roomId": 1,
+    "people":2
+}' "{{base_url}}/user/orderroom"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-orderroom-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/orderroom HTTP/1.1
+Host: 
+
+{
+    "roomId": 1,
+    "people":2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-makepayment">
+                        MakePayment
+                        <a href="#request-makepayment"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-makepayment-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-makepayment-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-makepayment-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "OrderId": 2
+}' "{{base_url}}/user/orderpayment"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-makepayment-example-http">
+                                <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/user/orderpayment HTTP/1.1
+Host: 
+
+{
+    "OrderId": 2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-myorders">
+                        MyOrders
+                        <a href="#request-myorders"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-myorders-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-myorders-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-myorders-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "{{base_url}}/user/myorder"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-myorders-example-http">
+                                <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/user/myorder HTTP/1.1
+Host: </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-mypayments">
+                        MyPayments
+                        <a href="#request-mypayments"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-mypayments-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-mypayments-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-mypayments-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "{{base_url}}/user/mypayment"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-mypayments-example-http">
+                                <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/user/mypayment HTTP/1.1
+Host: </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
