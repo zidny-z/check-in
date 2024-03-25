@@ -28,6 +28,8 @@ func UserRouts(c *gin.Engine) {
 		
 		// order room
 		User.POST("/orderroom", middlereware.UserAuth, controls.OrderRoom)
+		User.POST("/orderpayment", middlereware.UserAuth, controls.OrderPayment)
+
 		// User.GET("/viewbrand", middlereware.UserAuth, controls.ViewBrand)
 		// User.GET("/search", middlereware.UserAuth, controls.SearchProduct)
 		// User.GET("/viewproducts", middlereware.UserAuth, controls.ViewProducts)

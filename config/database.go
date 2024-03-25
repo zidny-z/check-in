@@ -31,7 +31,7 @@ func DBconnect() (*gorm.DB, error) {
 	DB.AutoMigrate(&models.Room{})
 	DB.AutoMigrate(&models.Hotel{})
 	DB.AutoMigrate(&models.Payment{})
-	DB.AutoMigrate(&models.Oder_item{})
+	DB.AutoMigrate(&models.Order{})
 
 	return DB, nil
 

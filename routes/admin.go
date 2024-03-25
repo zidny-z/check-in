@@ -27,6 +27,9 @@ func AdminRouts(c *gin.Engine) {
 		admin.GET("/rooms", middlereware.AdminAuth, controls.ViewRooms)
 		admin.PUT("/rooms/edit/:id", middlereware.AdminAuth, controls.EditRoom)
 
+		// order n payment management
+		admin.PUT("/validatepayment/:id", middlereware.AdminAuth, controls.ValidatePayment)
+
 		
 
 		// //User management routes

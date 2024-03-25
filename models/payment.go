@@ -5,17 +5,19 @@ import (
 )
 
 type Payment struct {
-	PaymentId     uint `JSON:"payment_id" gorm:"primarykey"`
+	PaymentId     uint `json:"payment_id" gorm:"primarykey"`
 	User          User `gorm:"ForeignKey:UserId"`
 	UserId        uint
-	Totalamount   uint   `jSON:"total_amount" gorm:"not null"`
-	Status        string `jSON:"Status" gorm:"not null"`
+	Totalamount   uint   `json:"total_amount" gorm:"not null"`
+	Status        string `json:"Status" gorm:"not null"`
 	Date          time.Time
-	NoKTP	    string `jSON:"NoKTP" gorm:"null"`
+	NoKTP	    string `json:"NoKTP" gorm:"null"`
+	Order	Order  `gorm:"ForeignKey:OrderId`
+	OrderId		uint `json:"OrderID`
 }
 
-type Oder_item struct {
-	OrderId     uint    `JSON:"OrderId" gorm:"primarykey"`
+type Order struct {
+	OrderId     uint    `json:"OrderId" gorm:"primarykey"`
 	User        User    `gorm:"ForeignKey:UserIdNo"`
 	UserIdNo    uint    `json:"useridno"  gorm:"not null" `
 	TotalAmount uint    `json:"TotalAmount"  gorm:"not null" `
