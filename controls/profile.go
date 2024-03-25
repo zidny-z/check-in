@@ -16,28 +16,6 @@ type ProfileData struct {
 	PhoneNumber int
 }
 
-//>>>>>>>>>> Get user profile <<<<<<<<<<<<<<<<<<<<<<<<<
-func GetUserProfile(c *gin.Context) {
-	id := c.Query("userId")
-	var userData models.User
-	db := config.DB
-	result := db.First(&userData, id)
-	if result.Error != nil {
-		c.JSON(404, gin.H{
-			"Message": "User not exist",
-		})
-		return
-	}
-	c.JSON(200, gin.H{
-		"First name ":  userData.FirstName,
-		"Last Name":    userData.LastName,
-		"Email":        userData.Email,
-		"Phone number": userData.PhoneNumber,
-		"Is Block":     userData.Isblocked,
-	})
-
-}
-
 //>>>>>>>>>>> Admin profile <<<<<<<<<<<<<<<<<<<<<<<
 func AdminProfile(c *gin.Context) {
 	adminid, err := strconv.Atoi(c.GetString("adminid"))

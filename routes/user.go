@@ -29,11 +29,8 @@ func UserRouts(c *gin.Engine) {
 		// order room
 		User.POST("/orderroom", middlereware.UserAuth, controls.OrderRoom)
 		User.POST("/orderpayment", middlereware.UserAuth, controls.OrderPayment)
-
-		// //Oder managements by user
-		// User.GET("/showorder", middlereware.UserAuth, controls.ShowOder)
-		// User.GET("/order/return", middlereware.UserAuth, controls.ReturnOrderByUser)
-		// User.GET("/order/cancelorder", middlereware.UserAuth, controls.CancelOrder)
+		User.GET("/myorder", middlereware.UserAuth, controls.ViewOrdersUser)
+		User.GET("/mypayment", middlereware.UserAuth, controls.ViewPaymentsUser)
 
 		//Forgot Password >>
 		User.PUT("/forgotpassword", middlereware.UserAuth, controls.GenerateOtpForForgotPassword)

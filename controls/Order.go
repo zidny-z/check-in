@@ -190,3 +190,84 @@ func ValidatePayment(c *gin.Context){
 	})
 }
 
+func ViewOrdersUser(c *gin.Context){
+	userId, err := strconv.Atoi(c.GetString("userid"))
+	if err != nil {
+		c.JSON(400, gin.H{
+			"Error": "Error in string conversion",
+		})		
+	}
+
+	var orders []models.Order
+	DB := config.DB
+
+	result := DB.Find(&orders, "user_id_no = ?", userId)
+	if result.Error != nil {
+		c.JSON(400, gin.H{
+			"Error": result.Error.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"Orders": orders,
+	})
+}
+
+func ViewAllOrders(c *gin.Context){
+	var orders []models.Order
+	DB := config.DB
+
+	result := DB.Find(&orders)
+	if result.Error != nil {
+		c.JSON(400, gin.H{
+			"Error": result.Error.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"Orders": orders,
+	})
+}
+
+func ViewAllPayments(c *gin.Context){
+	var payments []models.Payment
+	DB := config.DB
+
+	result := DB.Find(&payments)
+	if result.Error != nil {
+		c.JSON(400, gin.H{
+			"Error": result.Error.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"Payments": payments,
+	})
+}
+
+func ViewPaymentsUser(c *gin.Context){
+	userId, err := strconv.Atoi(c.GetString("userid"))
+	if err != nil {
+		c.JSON(400, gin.H{
+			"Error": "Error in string conversion",
+		})		
+	}
+
+	var payments []models.Payment
+	DB := config.DB
+
+	result := DB.Find(&payments, "user_id = ?", userId)
+	if result.Error != nil {
+		c.JSON(400, gin.H{
+			"Error": result.Error.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"Payments": payments,
+	})
+}

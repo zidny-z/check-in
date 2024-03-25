@@ -29,14 +29,13 @@ func AdminRouts(c *gin.Engine) {
 
 		// order n payment management
 		admin.PUT("/validatepayment/:id", middlereware.AdminAuth, controls.ValidatePayment)
+		admin.GET("/order", middlereware.AdminAuth, controls.ViewAllOrders)
+		admin.GET("/payment", middlereware.AdminAuth, controls.ViewAllPayments)
 
 		
 		// //User management routes
-		// admin.GET("/user/viewuser", middlereware.AdminAuth, controls.ViewAllUser)
-		// admin.GET("/user/searchuser", middlereware.AdminAuth, controls.AdminSearchUser)
-		// admin.PUT("/user/edituserprofile/:id", middlereware.AdminAuth, controls.EditUserProfileByadmin)
-		// admin.PUT("/user/blockusers", middlereware.AdminAuth, controls.AdminBlockUser)
-		// admin.GET("/user/getuserprofile", middlereware.AdminAuth, controls.GetUserProfile)
+		admin.GET("/user", middlereware.AdminAuth, controls.ViewAllUser)
+		// admin.PUT("/user/blockuser/:id", middlereware.AdminAuth, controls.AdminBlockUser)
 
 	}
 
