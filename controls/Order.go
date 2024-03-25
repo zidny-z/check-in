@@ -23,24 +23,30 @@ import (
 // //>>>>>>>>>> MakeORder <<<<<<<<<<<<<<<<
 func OrderRoom(c *gin.Context) {
 	userId, err := strconv.Atoi(c.GetString("userid"))
+	var requestBody struct{
+		RoomId uint `json:"RoomId"`
+		People uint `json:"people"`
+	}
+
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(400, gin.H{
+			"Error": "Error in binding json",
+		})
+		return
+	}
+
 	if err != nil {
 		c.JSON(400, gin.H{
-			"Error": "Error in string conversion",
+			"Error": "Error in string conversion userid",
 		})
 	}
 
-	roomId, err := strconv.Atoi(c.Query("roomid"))
-	if err != nil {
+	// check room capacity
+	if requestBody.People > 3 {
 		c.JSON(400, gin.H{
-			"Error": "Error in string conversion",
+			"Error": "Room can only accomodate 3 people",
 		})
-	}
-
-	people, err := strconv.Atoi(c.Query("people"))
-	if err != nil {
-		c.JSON(400, gin.H{
-			"Error": "Error in string conversion",
-		})
+		return
 	}
 
 	var room models.Room
@@ -48,7 +54,7 @@ func OrderRoom(c *gin.Context) {
 	var oderItem models.Oder_item
 
 	db := config.DB
-	result := db.Find(&room, "room_id = ?", roomId)
+	result := db.Find(&room, "room_id = ?", requestBody.RoomId)
 	if result.Error != nil {
 		c.JSON(400, gin.H{
 			"Error": result.Error.Error(),
@@ -56,7 +62,14 @@ func OrderRoom(c *gin.Context) {
 		return
 	}
 
-	result = db.Find(&user, "user_id = ?", userId)
+	if room.Avaliable <= 0{
+		c.JSON(400,gin.H{
+			"Error": "Kamar tida tersedia",
+		})
+		return
+	}
+
+	result = db.Find(&user, "id = ?", userId)
 	if result.Error != nil {
 		c.JSON(400, gin.H{
 			"Error": result.Error.Error(),
@@ -67,8 +80,8 @@ func OrderRoom(c *gin.Context) {
 	oderItem = models.Oder_item{
 		UserIdNo:    uint(userId),
 		TotalAmount: uint(room.Price),
-		RoomId:      uint(roomId),
-		People:      uint(people),
+		RoomId:      uint(requestBody.RoomId),
+		People:      uint(requestBody.People),
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
 	}
@@ -83,6 +96,7 @@ func OrderRoom(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"Message": "Room odered successfully",
+		"orderID":  oderItem.OrderId,    
 	})
 }
 
