@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"check-in/auth"
-	"check-in/config"
+	"checkin/auth"
+	"checkin/config"
 
-	"check-in/models"
+	"checkin/models"
 
 	"github.com/gin-gonic/gin"
 
@@ -320,5 +320,13 @@ func EditUserProfilebyUser(c *gin.Context) {
 			"Last name":  userData.LastName,
 			"Phone":      userData.PhoneNumber,
 		},
+	})
+}
+
+// Logout user
+func UserSignout(c *gin.Context) {
+	c.SetCookie("UserAutherization", "", 0, "", "", false, true)
+	c.JSON(200, gin.H{
+		"message": "User logout successfully",
 	})
 }

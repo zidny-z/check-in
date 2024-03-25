@@ -13,7 +13,7 @@ type Room struct {
 
 type Hotel struct {
 	ID        uint   `json:"id" gorm:"primaryKey"`
-	HotelName string `JSON:"hotel_name" gorm:"not null"`
-	Location  string `JSON:"location" gorm:"not null"`
-	Phone     string `JSON:"phone" gorm:"not null"`
+	HotelName string `json:"hotel_name" gorm:"not null"`
+	Location  string `json:"location" gorm:"not null"`
+	Phone     string `json:"phone" gorm:"not null"`
 }

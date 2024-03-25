@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"strconv"
 
-	"check-in/config"
-	"check-in/models"
+	"checkin/config"
+	"checkin/models"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"

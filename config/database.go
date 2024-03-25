@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"check-in/models"
+	"checkin/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

@@ -5,9 +5,9 @@ import (
 
 	"strconv"
 
-	"check-in/auth"
-	"check-in/config"
-	"check-in/models"
+	"checkin/auth"
+	"checkin/config"
+	"checkin/models"
 
 	"github.com/gin-gonic/gin"
 

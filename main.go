@@ -1,12 +1,12 @@
 package main
 
 import (
-	"check-in/config"
-	"check-in/routes"
+	"checkin/config"
+	"checkin/routes"
 
 	"gorm.io/gorm"
 
-	"check-in/initializer"
+	"checkin/initializer"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +28,7 @@ var R = gin.Default()
 
 func main() {
 
-	// routes.AdminRouts(R)
+	routes.AdminRouts(R)
 	routes.UserRouts(R)
 
 	R.Run()
