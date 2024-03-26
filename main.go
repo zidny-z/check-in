@@ -30,5 +30,6 @@ func main() {
 	routes.AdminRouts(R)
 	routes.UserRouts(R)
 
-	R.Run()
+	serverInfo := "0.0.0.0:8080" 
+	R.Run(serverInfo)
 }
